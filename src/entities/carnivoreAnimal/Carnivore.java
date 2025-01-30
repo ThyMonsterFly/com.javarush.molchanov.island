@@ -1,48 +1,51 @@
 package entities.carnivoreAnimal;
 
 import entities.Animal;
+import entities.Location;
 import utilities.Util;
 
-public class Carnivore extends Animal {
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
-    public int EatWolfProbability;
-    public int EatBoaProbability;
-    public int EatFoxProbability;
-    public int EatBearProbability;
-    public int EatEagleProbability;
-    public int EatHorseProbability;
-    public int EatDeerProbability;
-    public int EatRabbitProbability;
-    public int EatMouseProbability;
-    public int EatGoatProbability;
-    public int EatSheepProbability;
-    public int EatBoarProbability;
-    public int EatBuffaloProbability;
-    public int EatDuckProbability;
-    public int EatCaterpillarProbability;
+public abstract class Carnivore extends Animal {
 
-    public Carnivore(){
-        super();
-            EatWolfProbability = Util.getIntParam(this, "EatWolfProbability");
-            EatBoaProbability = Util.getIntParam(this, "EatBoaProbability");
-            EatFoxProbability = Util.getIntParam(this, "EatFoxProbability");
-            EatBearProbability = Util.getIntParam(this, "EatBearProbability");
-            EatEagleProbability = Util.getIntParam(this, "EatEagleProbability");
-            EatHorseProbability = Util.getIntParam(this, "EatHorseProbability");
-            EatDeerProbability = Util.getIntParam(this, "EatDeerProbability");
-            EatRabbitProbability = Util.getIntParam(this, "EatRabbitProbability");
-            EatMouseProbability = Util.getIntParam(this, "EatMouseProbability");
-            EatGoatProbability = Util.getIntParam(this, "EatGoatProbability");
-            EatSheepProbability = Util.getIntParam(this, "EatSheepProbability");
-            EatBoarProbability = Util.getIntParam(this, "EatBoarProbability");
-            EatBuffaloProbability = Util.getIntParam(this, "EatBuffaloProbability");
-            EatDuckProbability = Util.getIntParam(this, "EatDuckProbability");
-            EatCaterpillarProbability = Util.getIntParam(this, "EatCaterpillarProbability");
+    private Map<String, Integer> eatProbability;
+    private Location currentLocation;
+
+    public Carnivore(Location initialLocation){
+        super(initialLocation);
+        currentLocation = initialLocation;
+        eatProbability = new HashMap<>();
+        eatProbability.put("Wolf", Util.getIntParam(this, "EatWolfProbability"));
+        eatProbability.put("Boa", Util.getIntParam(this, "EatBoaProbability"));
+        eatProbability.put("Fox", Util.getIntParam(this, "EatFoxProbability"));
+        eatProbability.put("Bear", Util.getIntParam(this, "EatBearProbability"));
+        eatProbability.put("Eagle", Util.getIntParam(this, "EatEagleProbability"));
+        eatProbability.put("Horse", Util.getIntParam(this, "EatHorseProbability"));
+        eatProbability.put("Deer", Util.getIntParam(this, "EatDeerProbability"));
+        eatProbability.put("Rabbit", Util.getIntParam(this, "EatRabbitProbability"));
+        eatProbability.put("Mouse", Util.getIntParam(this, "EatMouseProbability"));
+        eatProbability.put("Goat", Util.getIntParam(this, "EatGoatProbability"));
+        eatProbability.put("Sheep", Util.getIntParam(this, "EatSheepProbability"));
+        eatProbability.put("Boar", Util.getIntParam(this, "EatBoarProbability"));
+        eatProbability.put("Buffalo", Util.getIntParam(this, "EatBuffaloProbability"));
+        eatProbability.put("Duck", Util.getIntParam(this, "EatDuckProbability"));
+        eatProbability.put("Caterpillar", Util.getIntParam(this, "EatCaterpillarProbability"));
     }
 
     public void eat() {
-
+        List<Animal> animals = currentLocation.getAnimals();
+        for (Animal other : animals) {
+            if (!other.equals(this) && (ThreadLocalRandom.current().nextInt(101) <= eatProbability.get(other.getClass().getSimpleName()))) {
+               currentLocation.removeAnimal(other);
+               if (other.weight < saturation){
+                   weight -= saturation;
+               }
+               break;
+            }
+        }
     }
-
 
 }

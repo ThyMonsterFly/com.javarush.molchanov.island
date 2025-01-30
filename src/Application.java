@@ -1,15 +1,24 @@
-import entities.carnivoreAnimal.Wolf;
+
+import utilities.Settings;
+import utilities.Simulation;
+
+import java.util.concurrent.TimeUnit;
 
 public class Application {
 
     public static void main(String[] args) {
 
-        Wolf wlf = new Wolf();
-        System.out.println(wlf.getClass().getSimpleName());
-        System.out.println("Weight - " + wlf.weight);
-        System.out.println("MaxCellCount - " + wlf.maxCellCount);
-        System.out.println("Speed - " + wlf.speed);
-        System.out.println("Saturation - " + wlf.saturation);
+        Simulation simulation = new Simulation();
+        simulation.start();
+        try {
+            Thread.sleep(Settings.lifetime);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        finally {
+            simulation.stop();
+        }
 
     }
+
 }

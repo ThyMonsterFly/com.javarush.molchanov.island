@@ -1,12 +1,11 @@
 package utilities;
 
-import entities.Animal;
 
 public class Util {
 
-    public static int getIntParam (Animal animal, String attribute){
+    public static int getIntParam (Object object, String attribute){
         try {
-            return (int)Settings.class.getField(animal.getClass().getSimpleName().toLowerCase() + attribute).get(animal);
+            return (int)Settings.class.getField(object.getClass().getSimpleName().toLowerCase() + attribute).get(object);
         } catch (Exception e) {
             System.out.println("-".repeat(50));
             System.out.println("getIntParam malfunction!");

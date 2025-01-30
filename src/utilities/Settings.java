@@ -2,9 +2,16 @@ package utilities;
 
 public class Settings {
 
+        //Island lifetime in milliseconds
+        public static long lifetime = 10000;
+
         //Island size
         public static int rowsCount = 5;
         public static int columnsCount = 5;
+
+        //Plant settings
+        public static int plantWeight = 1;
+        public static int plantMaxCellCount = 200;
 
         //Wolf settings
         public static int wolfWeight = 50;
@@ -128,13 +135,13 @@ public class Settings {
         public static int rabbitWeight = 2;
         public static int rabbitMaxCellCount = 150;
         public static int rabbitSpeed = 2;
-        public static double rabbitSaturation = 0.45;
+        public static int rabbitSaturation = 1;
 
         //Mouse settings
-        public static double mouseWeight = 0.05;
+        public static int mouseWeight = 1;
         public static int mouseMaxCellCount = 500;
         public static int mouseSpeed = 1;
-        public static double mouseSaturation = 0.01;
+        public static int mouseSaturation = 1;
         public static int mouseEatCaterpillarProbability = 90;
 
         //Goat settings
@@ -154,7 +161,7 @@ public class Settings {
         public static int boarMaxCellCount = 50;
         public static int boarSpeed = 2;
         public static int boarSaturation = 50;
-        public static final int boarEatCaterpillarProbability = 90;
+        public static int boarEatCaterpillarProbability = 90;
 
         //Buffalo settings
         public static int buffaloWeight = 700;
@@ -166,11 +173,11 @@ public class Settings {
         public static int duckWeight = 1;
         public static int duckMaxCellCount = 200;
         public static int duckSpeed = 4;
-        public static double duckSaturation = 0.15;
+        public static int duckSaturation = 1;
         public static int duckEatCaterpillarProbability = 90;
 
         //Caterpillar settings
-        public static double caterpillarWeight = 0.01;
+        public static int caterpillarWeight = 1;
         public static int caterpillarMaxCellCount = 1000;
         public static int caterpillarSpeed = 0;
         public static int caterpillarSaturation = 0;
