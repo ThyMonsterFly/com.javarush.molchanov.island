@@ -3,11 +3,11 @@ package utilities;
 public class Settings {
 
         //Island lifetime in milliseconds
-        public static long lifetime = 10000;
+        public static long lifetime = 30000;
 
         //Island size
-        public static int rowsCount = 5;
-        public static int columnsCount = 5;
+        public static int rowsCount = 10;
+        public static int columnsCount = 10;
 
         //Plant settings
         public static int plantWeight = 1;
